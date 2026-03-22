@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EliteDrive | Premium Chauffeur & Airport Transfer Service</title>
+<meta name="description" content="Book a luxury chauffeur in seconds. Airport transfers, corporate travel & events. Professional drivers, premium fleet. Available 24/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#060e09;--deep:#0a1610;--surf:#0f1f15;--card:#142a1a;
+  --bord:rgba(180,230,160,.09);--gmid:#235230;--gacc:#3a8a50;
+  --ch:#d4b896;--chl:#e8d0b8;--chd:rgba(212,184,150,.14);
+  --wh:#f5f0e8;--ow:#ede6d8;--mu:#7a9080;--tx:#c8d8c0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--tx);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.8rem,6vw,5.6rem);letter-spacing:-.02em;line-height:1.05}
+h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.02em;line-height:1.1}
+h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.3rem}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+.sec{padding:96px 0}
+.sec-hd{text-align:center;max-width:580px;margin:0 auto 60px}
+.sec-hd h2{color:var(--wh);margin-bottom:14px}
+.sec-hd p{color:var(--mu);line-height:1.75;font-size:.95rem}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ch);border:1px solid var(--chd);padding:6px 16px;border-radius:999px;margin-bottom:18px}
+.pill::before{content:'';width:4px;height:4px;background:var(--ch);border-radius:50%}
+.btn{display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:.07em;text-transform:uppercase;transition:all .3s;white-space:nowrap}
+.btn-p{background:linear-gradient(135deg,var(--ch),#b89870);color:#060e09;padding:16px 32px;font-size:.82rem;box-shadow:0 4px 20px rgba(212,184,150,.26)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,184,150,.42)}
+.btn-g{background:transparent;color:var(--wh);padding:15px 32px;font-size:.82rem;border:1px solid rgba(255,255,255,.22)}
+.btn-g:hover{border-color:var(--ch);color:var(--ch)}
+.btn svg{width:15px;height:15px;flex-shrink:0}
+ 
+/* TOPBAR */
+.topbar{background:var(--gmid);padding:9px 28px;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;font-size:.72rem;color:var(--ow);letter-spacing:.04em}
+.topbar a{color:var(--chl);font-weight:500}
+ 
+/* HEADER */
+.hdr{position:fixed;top:37px;left:0;right:0;z-index:900}
+.hdr.up{top:0}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(6,14,9,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--bord);transition:padding .3s}
+.hdr.slim .hdr-in{padding:12px 40px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-box{width:38px;height:38px;border:1.5px solid var(--ch);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-box svg{width:20px;height:20px}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;letter-spacing:.1em;color:var(--wh);line-height:1}
+.logo-sub{font-size:.57rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ch)}
+.hnav{display:flex;align-items:center;gap:28px}
+.hnav a{color:rgba(255,255,255,.7);font-size:.8rem;letter-spacing:.07em;text-transform:uppercase;transition:color .2s;position:relative}
+.hnav a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--ch);transform:scaleX(0);transition:transform .3s}
+.hnav a:hover{color:var(--wh)}
+.hnav a:hover::after{transform:scaleX(1)}
+.hright{display:flex;align-items:center;gap:14px}
+.ph{color:var(--ch);font-size:.82rem;font-weight:500;display:flex;align-items:center;gap:7px}
+.ph svg{width:13px;height:13px}
+.hmbg{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.hmbg span{display:block;width:22px;height:1.5px;background:var(--wh);margin:5px 0}
+ 
+/* MOBILE MENU */
+.mmenu{position:fixed;inset:0;z-index:999;background:rgba(6,14,9,.98);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transform:translateX(100%);transition:transform .4s}
+.mmenu.on{transform:none}
+.mmenu a{color:var(--wh);font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;transition:color .2s}
+.mmenu a:hover{color:var(--ch)}
+.mmx{position:absolute;top:26px;right:26px;background:none;border:none;color:var(--wh);font-size:2rem;cursor:pointer;line-height:1}
+ 
+/* HERO — img tag, always renders */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:120px;padding-bottom:80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;z-index:0;display:block}
+.hero-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(108deg,rgba(6,14,9,.94) 0%,rgba(6,14,9,.66) 50%,rgba(6,14,9,.36) 100%)}
+.hero-ov::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 80%,rgba(58,138,80,.13) 0%,transparent 55%)}
+.hero-bar{position:absolute;left:0;top:0;bottom:0;width:3px;z-index:2;opacity:.55;background:linear-gradient(180deg,transparent,var(--gacc) 30%,var(--ch) 70%,transparent)}
+.hero-body{position:relative;z-index:3;max-width:700px}
+.hero-sub{color:rgba(255,255,255,.63);font-size:1rem;line-height:1.78;max-width:480px;margin-bottom:38px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:54px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap}
+.sv{display:block;font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--wh);line-height:1}
+.sv b{color:var(--ch);font-weight:300}
+.sl{font-size:.67rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-top:3px}
+.rbadge{position:absolute;bottom:80px;right:60px;z-index:3;background:rgba(10,22,14,.93);backdrop-filter:blur(18px);border:1px solid rgba(58,138,80,.32);border-radius:4px;padding:18px 22px;text-align:center}
+.rb-s{color:var(--ch);font-size:.85rem;letter-spacing:2px}
+.rb-n{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--wh);line-height:1.1}
+.rb-l{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
+.scue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:7px}
+.scue span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mu)}
+.scue-line{width:1px;height:36px;background:linear-gradient(180deg,var(--gacc),transparent);animation:sp 2s ease infinite}
+@keyframes sp{0%,100%{opacity:0;transform:scaleY(0) translateY(-100%)}50%{opacity:1;transform:scaleY(1) translateY(0)}}
+ 
+/* BOOKING */
+.bsec{background:var(--surf);border-top:1px solid var(--bord);border-bottom:1px solid var(--bord);position:relative;z-index:10}
+.bin{display:grid;grid-template-columns:1fr 260px}
+.bform{padding:50px;border-right:1px solid var(--bord)}
+.bform h2{color:var(--wh);font-size:1.8rem;margin-bottom:5px}
+.bform>p{color:var(--mu);font-size:.83rem;margin-bottom:30px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.fg .full{grid-column:1/-1}
+.fl label{display:block;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:7px}
+.fl input,.fl select{width:100%;background:var(--card);border:1px solid var(--bord);border-radius:2px;color:var(--wh);font-family:'DM Sans',sans-serif;font-size:.88rem;padding:13px 15px;outline:none;transition:all .2s;-webkit-appearance:none;appearance:none}
+.fl input:focus,.fl select:focus{border-color:var(--gacc);box-shadow:0 0 0 3px rgba(58,138,80,.13)}
+.fl input::placeholder{color:rgba(255,255,255,.22)}
+.fl select option{background:var(--card)}
+.btrust{padding:40px 26px;display:flex;flex-direction:column;justify-content:center;gap:24px}
+.ti{display:flex;align-items:flex-start;gap:13px}
+.tico{width:34px;height:34px;background:rgba(58,138,80,.13);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tico svg{width:15px;height:15px;stroke:var(--ch);fill:none;stroke-width:2}
+.ti strong{display:block;color:var(--wh);font-size:.83rem;font-weight:500}
+.ti span{font-size:.72rem;color:var(--mu)}
+ 
+/* SERVICES — cards with photo background via inline style */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.sc{position:relative;overflow:hidden;cursor:pointer;background-size:cover;background-position:center;background-repeat:no-repeat}
+.sc::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,9,.05) 0%,rgba(6,14,9,.9) 100%);transition:opacity .4s}
+.sc:hover::after{opacity:.85}
+.sc-body{position:relative;z-index:2;padding:28px 24px}
+.sc-num{font-family:'Cormorant Garamond',serif;font-size:.82rem;color:var(--ch);letter-spacing:.12em;margin-bottom:6px}
+.sc-body h3{color:var(--wh);font-size:1.45rem;margin-bottom:8px}
+.sc-body p{color:rgba(255,255,255,.58);font-size:.8rem;line-height:1.62}
+.sc-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ch)}
+ 
+/* PROCESS */
+.psec{background:var(--surf)}
+.prow{display:grid;grid-template-columns:repeat(4,1fr);position:relative;gap:0}
+.prow::before{content:'';position:absolute;top:34px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--gacc),var(--ch),var(--gacc),transparent)}
+.pstep{text-align:center;padding:0 20px}
+.pnum{width:68px;height:68px;border-radius:50%;background:var(--card);border:1px solid var(--ch);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ch);position:relative;z-index:1}
+.pstep h4{color:var(--wh);font-size:.95rem;font-weight:500;margin-bottom:9px}
+.pstep p{color:var(--mu);font-size:.8rem;line-height:1.65}
+ 
+/* FLEET — photo as background on the photo div via inline style */
+.fsec{background:var(--deep)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.fc{background:var(--card);border:1px solid var(--bord);border-radius:2px;overflow:hidden;transition:all .3s}
+.fc:hover{border-color:rgba(212,184,150,.35);transform:translateY(-4px);box-shadow:0 20px 55px rgba(0,0,0,.6)}
+.fphoto{height:230px;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--deep);position:relative}
+.ftag{position:absolute;top:14px;right:14px;background:var(--gacc);color:var(--ow);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:2px}
+.finfo{padding:22px}
+.finfo h3{color:var(--wh);font-size:1.25rem;margin-bottom:3px}
+.fcls{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ch);margin-bottom:14px;display:block}
+.fspecs{display:flex;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.sp{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--mu)}
+.sp svg{width:11px;height:11px;stroke:var(--ch);fill:none;stroke-width:2}
+.fprice{display:flex;align-items:baseline;gap:5px;margin-bottom:14px}
+.pfrom{font-size:.68rem;color:var(--mu);text-transform:uppercase;letter-spacing:.08em}
+.pn{font-family:'Cormorant Garamond',serif;font-size:1.75rem;color:var(--wh)}
+.pu{font-size:.68rem;color:var(--mu)}
+ 
+/* OFFERS */
+.osec{background:var(--ink)}
+.ogrid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.oc{position:relative;padding:50px 46px;overflow:hidden;background:var(--card);border:1px solid var(--bord);transition:border-color .3s;cursor:pointer}
+.oc:hover{border-color:rgba(212,184,150,.28)}
+.oc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gacc),var(--ch),transparent);transform:scaleX(0);transition:transform .4s}
+.oc:hover::before{transform:scaleX(1)}
+.obadge{display:inline-block;background:var(--gacc);color:var(--ow);font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:5px 12px;border-radius:2px;margin-bottom:20px}
+.oc h3{color:var(--wh);font-size:1.5rem;margin-bottom:11px}
+.oc>p{color:var(--mu);font-size:.83rem;line-height:1.7;margin-bottom:24px}
+.oprow{display:flex;align-items:baseline;gap:10px;margin-bottom:24px}
+.owas{font-size:.95rem;color:var(--mu);text-decoration:line-through}
+.onow{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--ch)}
+.osave{background:rgba(212,184,150,.12);color:var(--ch);font-size:.7rem;padding:3px 8px;border-radius:2px}
+.oli{list-style:none;margin-bottom:28px}
+.oli li{font-size:.8rem;color:rgba(200,216,192,.72);padding:5px 0;border-bottom:1px solid var(--bord);display:flex;align-items:center;gap:9px}
+.oli li::before{content:'✓';color:var(--gacc);font-size:.78rem;flex-shrink:0}
+.onum{position:absolute;right:28px;top:28px;font-family:'Cormorant Garamond',serif;font-size:8rem;font-weight:300;color:rgba(58,138,80,.06);line-height:1;pointer-events:none;user-select:none}
+ 
+/* REVIEWS */
+.rvsec{background:var(--ink)}
+.rvtop{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:50px}
+.bigr{font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--wh);line-height:1}
+.rvs{color:var(--ch);font-size:1.05rem;letter-spacing:2px}
+.rvct{font-size:.74rem;color:var(--mu);margin-top:3px}
+.gbadge{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--bord);padding:10px 18px;border-radius:4px}
+.gbadge span{font-size:.74rem;color:var(--mu)}
+.rvgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rvc{background:var(--card);border:1px solid var(--bord);border-radius:2px;padding:26px;transition:border-color .3s}
+.rvc:hover{border-color:rgba(58,138,80,.35)}
+.rvstars{color:var(--ch);font-size:.72rem;letter-spacing:2px;margin-bottom:14px}
+.rvq{color:rgba(200,216,192,.8);font-size:.84rem;line-height:1.72;margin-bottom:18px;font-style:italic}
+.rvwho{display:flex;align-items:center;gap:11px}
+.rvav{width:38px;height:38px;border-radius:50%;background:var(--chd);border:1px solid var(--gacc);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ch);flex-shrink:0}
+.rvname{font-weight:500;color:var(--wh);font-size:.87rem}
+.rvmeta{font-size:.7rem;color:var(--mu)}
+ 
+/* WHY */
+.wsec{background:var(--surf)}
+.win{display:grid;grid-template-columns:1fr 1.4fr;gap:72px;align-items:center}
+.witems{display:flex;flex-direction:column}
+.wrow{display:flex;align-items:flex-start;gap:18px;padding:24px 0;border-bottom:1px solid var(--bord)}
+.wrow:first-child{border-top:1px solid var(--bord)}
+.wico{width:44px;height:44px;flex-shrink:0;background:rgba(58,138,80,.11);border:1px solid rgba(58,138,80,.24);border-radius:2px;display:flex;align-items:center;justify-content:center}
+.wico svg{width:19px;height:19px;stroke:var(--ch);fill:none;stroke-width:1.5}
+.wrow:hover .wico{background:rgba(58,138,80,.22)}
+.wtxt h4{color:var(--wh);font-size:.92rem;font-weight:500;margin-bottom:5px}
+.wtxt p{color:var(--mu);font-size:.8rem;line-height:1.7}
+ 
+/* MARQUEE */
+.mqb{background:var(--gmid);overflow:hidden;padding:16px 0;border-top:1px solid rgba(58,138,80,.26);border-bottom:1px solid rgba(58,138,80,.26)}
+.mqt{display:flex;align-items:center;gap:36px;white-space:nowrap;width:max-content;animation:mq 44s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mqi{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ow)}
+.mqi em{font-style:italic;color:var(--chl)}
+.mqd{color:var(--gacc);opacity:.65}
+ 
+/* BLOG — photo div with inline background-image */
+.blsec{background:var(--deep)}
+.blgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blc{background:var(--card);border:1px solid var(--bord);border-radius:2px;overflow:hidden;transition:all .3s}
+.blc:hover{border-color:rgba(212,184,150,.28);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.blphoto{height:200px;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--deep)}
+.blinfo{padding:26px}
+.blcat{font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gacc);font-weight:600;display:block;margin-bottom:11px}
+.blinfo h3{color:var(--wh);font-size:1.15rem;line-height:1.38;margin-bottom:9px}
+.blinfo p{color:var(--mu);font-size:.8rem;line-height:1.65;margin-bottom:18px}
+.bllink{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ch);transition:color .2s}
+.bllink:hover{color:var(--wh)}
+ 
+/* LOCATIONS */
+.locsec{background:var(--ink)}
+.locgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.locc{background:var(--card);border:1px solid var(--bord);border-radius:2px;padding:26px 20px;text-align:center;transition:all .3s;display:block}
+.locc:hover{border-color:var(--ch);transform:translateY(-2px)}
+.loci{font-size:1.7rem;margin-bottom:10px;display:block}
+.locc h4{color:var(--wh);font-size:.95rem;margin-bottom:5px}
+.locc span{font-size:.72rem;color:var(--mu)}
+ 
+/* CTA — photo as img tag */
+.ctasec{position:relative;height:520px;display:flex;align-items:center;overflow:hidden}
+.cta-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;z-index:0;display:block}
+.cta-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(6,14,9,.96) 0%,rgba(6,14,9,.72) 50%,rgba(6,14,9,.3) 100%)}
+.cta-body{position:relative;z-index:2;max-width:600px}
+.cta-body h2{color:var(--wh);margin-bottom:18px}
+.cta-body p{color:rgba(255,255,255,.62);font-size:1rem;line-height:1.76;margin-bottom:42px}
+.cta-btns{display:flex;gap:14px;flex-wrap:wrap}
+ 
+/* MAP */
+.mapsec{background:var(--deep);padding:0}
+.maphead{padding:60px 0 38px}
+.mapwrap{position:relative;height:400px;border-top:1px solid var(--bord);overflow:hidden}
+.mapwrap iframe{width:100%;height:100%;border:0;filter:invert(.88) hue-rotate(145deg) saturate(.55) brightness(.82)}
+.mcard{position:absolute;top:24px;left:24px;z-index:10;background:rgba(10,22,14,.95);backdrop-filter:blur(16px);border:1px solid var(--bord);border-radius:4px;padding:22px 26px;min-width:232px}
+.mcard h4{color:var(--wh);font-family:'Cormorant Garamond',serif;font-size:1.15rem;margin-bottom:12px}
+.mrow{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px}
+.mrow svg{width:13px;height:13px;stroke:var(--ch);fill:none;flex-shrink:0;margin-top:2px;stroke-width:2}
+.mrow p,.mrow a{font-size:.77rem;color:var(--mu);line-height:1.5}
+.mrow a{color:var(--ch)}
+ 
+/* FOOTER */
+footer{background:var(--deep);border-top:1px solid var(--bord)}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;padding:68px 0 44px}
+.ftbrand p{color:var(--mu);font-size:.82rem;line-height:1.75;margin:18px 0 26px;max-width:270px}
+.socs{display:flex;gap:10px}
+.soca{width:34px;height:34px;background:var(--card);border:1px solid var(--bord);border-radius:2px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.soca:hover{border-color:var(--ch);background:var(--chd)}
+.soca svg{width:13px;height:13px;stroke:rgba(255,255,255,.55);fill:none}
+.ftcol h5{color:var(--wh);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}
+.ftcol a,.ftcol p{color:var(--mu);font-size:.82rem;line-height:1.85;display:block;transition:color .2s}
+.ftcol a:hover{color:var(--ch)}
+.fhours{display:flex;justify-content:space-between;font-size:.8rem;color:var(--mu)}
+.ftbot{border-top:1px solid var(--bord);padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.ftbot p{font-size:.72rem;color:rgba(255,255,255,.28)}
+.ftlinks{display:flex;gap:18px}
+.ftlinks a{font-size:.72rem;color:rgba(255,255,255,.28);transition:color .2s}
+.ftlinks a:hover{color:var(--ch)}
+ 
+/* COOKIE */
+.ck{position:fixed;bottom:22px;left:22px;right:22px;z-index:9999;background:var(--surf);border:1px solid var(--bord);border-radius:4px;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px;backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.5);transform:translateY(130%);transition:transform .5s}
+.ck.show{transform:none}
+.ck p{font-size:.8rem;color:var(--mu);max-width:600px}
+.ck a{color:var(--ch)}
+.ckbtns{display:flex;gap:9px;flex-shrink:0}
+.ckok{background:var(--ch);color:#060e09;border:none;padding:9px 18px;font-size:.77rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;border-radius:2px}
+.ckno{background:transparent;color:var(--mu);border:1px solid var(--bord);padding:9px 18px;font-size:.77rem;cursor:pointer;border-radius:2px}
+ 
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(6,14,9,.9);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+.mbox{background:var(--card);border:1px solid var(--gacc);border-radius:4px;padding:48px 44px;text-align:center;max-width:460px;width:90%}
+.mok{width:60px;height:60px;border:2px solid var(--ch);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:1.7rem;color:var(--ch)}
+.mbox h3{color:var(--wh);font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:11px}
+.mbox p{color:var(--mu);font-size:.84rem;line-height:1.72;margin-bottom:30px}
+ 
+/* WHATSAPP */
+.wa{position:fixed;bottom:26px;right:26px;z-index:9996;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.42);transition:all .3s}
+.wa:hover{transform:scale(1.1)}
+ 
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hnav{display:none}.hmbg{display:block}
+  .hdr-in{padding:14px 24px}
+  .bin{grid-template-columns:1fr}
+  .btrust{flex-direction:row;flex-wrap:wrap;border-top:1px solid var(--bord);padding:28px}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .fgrid,.blgrid{grid-template-columns:1fr 1fr}
+  .ftgrid{grid-template-columns:1fr 1fr}
+  .prow{grid-template-columns:1fr 1fr;gap:36px}
+  .prow::before{display:none}
+  .locgrid{grid-template-columns:1fr 1fr}
+  .win{grid-template-columns:1fr;gap:44px}
+  .ctasec{height:auto;padding:80px 0}
+}
+@media(max-width:768px){
+  .hdr{top:0!important}
+  .topbar{display:none}
+  .rbadge{display:none}
+  .bform{padding:28px 20px}
+  .btrust{padding:20px}
+  .fg{grid-template-columns:1fr}
+  .fg .full{grid-column:auto}
+  .ogrid,.rvgrid,.fgrid,.svc-grid,.blgrid{grid-template-columns:1fr}
+  .hero-stats{gap:20px}
+  .rvtop{flex-direction:column;align-items:flex-start;gap:18px}
+  .ftgrid{grid-template-columns:1fr;gap:28px;padding:44px 0 28px}
+  .ftbot{flex-direction:column;text-align:center}
+  .oc{padding:28px 22px}
+  .locgrid{grid-template-columns:1fr 1fr}
+  .sec{padding:68px 0}
+  .mapwrap{height:300px}
+  .mcard{top:12px;left:12px;padding:14px 16px;min-width:170px}
+}
+</style>
+</head>
+<body>
+ 
+<div class="topbar">
+  <span>✈ Heathrow · Gatwick · Stansted · Luton · City Airport</span>
+  <a href="tel:+18001234567">📞 +1 (800) 123-4567 — 24/7</a>
+  <span>Free cancellation up to 3h before pickup</span>
+</div>
+ 
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a href="#" class="logo">
+      <div class="logo-box"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ch)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <div><div class="logo-name">EliteDrive</div><div class="logo-sub">Chauffeur Services</div></div>
+    </a>
+    <nav class="hnav">
+      <a href="#services">Services</a><a href="#fleet">Fleet</a>
+      <a href="#offers">Offers</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="hright">
+      <a href="tel:+18001234567" class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.66-.66a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>+1 (800) 123-4567</a>
+      <a href="#booking" class="btn btn-p">Book Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <button class="hmbg" id="hmbg"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+ 
+<div class="mmenu" id="mmenu">
+  <button class="mmx" id="mmx">✕</button>
+  <a href="#services" onclick="cm()">Services</a><a href="#fleet" onclick="cm()">Fleet</a>
+  <a href="#offers" onclick="cm()">Offers</a><a href="#reviews" onclick="cm()">Reviews</a>
+  <a href="#contact" onclick="cm()">Contact</a>
+  <a href="tel:+18001234567" class="btn btn-p">Call 24/7</a>
+</div>
+ 
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <img class="hero-bg" src="https://cdn.pixabay.com/photo/2017/03/27/14/56/auto-2179220_1280.jpg" alt="Luxury chauffeur car" loading="eager" fetchpriority="high">
+  <div class="hero-ov"></div>
+  <div class="hero-bar"></div>
+  <div class="wrap">
+    <div class="hero-body">
+      <div class="pill">Premium Chauffeur Service — Est. 2008</div>
+      <h1 style="margin-top:4px;margin-bottom:22px;color:var(--wh)">Arrive in <em style="color:var(--ch);font-style:italic">Absolute</em><br>Luxury</h1>
+      <p class="hero-sub">Airport transfers, corporate travel, and special events — driven by precision, defined by elegance. 24/7 across all major airports.</p>
+      <div class="hero-btns">
+        <a href="#booking" class="btn btn-p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Book Your Ride</a>
+        <a href="tel:+18001234567" class="btn btn-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.66-.66a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>Call Anytime</a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="sv">16<b>K+</b></span><div class="sl">Rides Completed</div></div>
+        <div><span class="sv">4.9<b>★</b></span><div class="sl">Average Rating</div></div>
+        <div><span class="sv">24<b>/7</b></span><div class="sl">Availability</div></div>
+        <div><span class="sv">15<b>+</b></span><div class="sl">Years Experience</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="rbadge"><div class="rb-s">★★★★★</div><div class="rb-n">4.9</div><div class="rb-l">Google Rating<br>847 Reviews</div></div>
+  <div class="scue"><span>Scroll</span><div class="scue-line"></div></div>
+</section>
+ 
+<!-- ═══ BOOKING ═══ -->
+<section class="bsec" id="booking">
+  <div class="bin">
+    <div class="bform">
+      <h2 style="font-size:1.8rem">Book Your Journey</h2>
+      <p>Fill in your details and receive instant email confirmation</p>
+      <form onsubmit="doBook(event)">
+        <div class="fg">
+          <div class="fl"><label>First Name</label><input type="text" placeholder="James" required></div>
+          <div class="fl"><label>Last Name</label><input type="text" placeholder="Anderson" required></div>
+          <div class="fl"><label>Email</label><input type="email" placeholder="james@email.com" required></div>
+          <div class="fl"><label>Phone</label><input type="tel" placeholder="+1 (555) 000-0000" required></div>
+          <div class="fl"><label>Pickup Location</label><input type="text" placeholder="Address or airport"></div>
+          <div class="fl"><label>Destination</label><input type="text" placeholder="Address or hotel"></div>
+          <div class="fl"><label>Date</label><input type="date" id="bdate" required></div>
+          <div class="fl"><label>Time</label><input type="time" required></div>
+          <div class="fl"><label>Passengers</label><select><option>1 Passenger</option><option>2 Passengers</option><option>3 Passengers</option><option>4 Passengers</option><option>5–8 Passengers</option><option>9+ Passengers</option></select></div>
+          <div class="fl"><label>Service Type</label><select><option>Airport Transfer</option><option>Corporate Travel</option><option>Wedding / Event</option><option>City Tour</option><option>Long Distance</option><option>Hourly Hire</option></select></div>
+          <div class="fl full"><label>Special Requests (optional)</label><input type="text" placeholder="Child seat, extra luggage, meet &amp; greet…"></div>
+          <div class="full" style="margin-top:6px"><button type="submit" class="btn btn-p" style="width:100%;justify-content:center;padding:17px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>Confirm Booking — Get Instant Quote</button></div>
+        </div>
+      </form>
+    </div>
+    <div class="btrust">
+      <div class="ti"><div class="tico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><strong>Free Cancellation</strong><span>Up to 3 hours before</span></div></div>
+      <div class="ti"><div class="tico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><strong>Flight Monitoring</strong><span>Real-time tracking</span></div></div>
+      <div class="ti"><div class="tico"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><div><strong>Secure Payment</strong><span>All cards &amp; invoicing</span></div></div>
+      <div class="ti"><div class="tico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.66-.66a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg></div><div><strong>24/7 Dispatch</strong><span>Always reachable</span></div></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ SERVICES ═══ -->
+<section class="sec" id="services" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="sec-hd"><div class="pill">What We Offer</div><h2>Every Journey,<br>Crafted with Precision</h2><p>From seamless airport pickups to grand wedding arrivals — an experience beyond transportation.</p></div>
+  </div>
+  <div class="svc-grid">
+ 
+    <div class="sc" style="position:relative;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80&auto=format&fit=crop" alt="Airport Transfer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,9,0) 35%,rgba(6,14,9,.95) 100%);z-index:1"></div>
+      <div class="sc-body" style="position:relative;z-index:2"><div class="sc-num">01</div><h3>Airport Transfers</h3><p>Punctual pickups with real-time flight monitoring and free waiting time.</p><a href="#booking" class="sc-link">Book Transfer →</a></div>
+    </div>
+ 
+    <div class="sc" style="position:relative;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80&auto=format&fit=crop" alt="Corporate Travel" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,9,0) 35%,rgba(6,14,9,.95) 100%);z-index:1"></div>
+      <div class="sc-body" style="position:relative;z-index:2"><div class="sc-num">02</div><h3>Corporate Travel</h3><p>Discreet, professional chauffeur service tailored for executives and business clients.</p><a href="#booking" class="sc-link">Enquire Now →</a></div>
+    </div>
+ 
+    <div class="sc" style="position:relative;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden">
+      <img src="https://i.ibb.co.com/wZfKfXJ7/eventtravel.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,9,0) 35%,rgba(6,14,9,.95) 100%);z-index:1"></div>
+      <div class="sc-body" style="position:relative;z-index:2"><div class="sc-num">03</div><h3>Weddings &amp; Events</h3><p>Arrive in unforgettable style — decorated luxury fleet with full red-carpet service.</p><a href="#booking" class="sc-link">Plan Your Event →</a></div>
+    </div>
+ 
+    <div class="sc" style="position:relative;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80&auto=format&fit=crop" alt="Hourly Hire" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,9,0) 35%,rgba(6,14,9,.95) 100%);z-index:1"></div>
+      <div class="sc-body" style="position:relative;z-index:2"><div class="sc-num">04</div><h3>Hourly Hire</h3><p>Retain a personal chauffeur for meetings, errands, and shopping at your disposal.</p><a href="#booking" class="sc-link">Hire By Hour →</a></div>
+    </div>
+ 
+    <div class="sc" style="position:relative;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80&auto=format&fit=crop" alt="Long Distance" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,9,0) 35%,rgba(6,14,9,.95) 100%);z-index:1"></div>
+      <div class="sc-body" style="position:relative;z-index:2"><div class="sc-num">05</div><h3>Long Distance</h3><p>Travel between cities in supreme comfort — Wi-Fi, refreshments, and total privacy.</p><a href="#booking" class="sc-link">Plan Journey →</a></div>
+    </div>
+ 
+    <div class="sc" style="position:relative;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600&q=80&auto=format&fit=crop" alt="Scenic Tours" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,9,0) 35%,rgba(6,14,9,.95) 100%);z-index:1"></div>
+      <div class="sc-body" style="position:relative;z-index:2"><div class="sc-num">06</div><h3>Scenic Tours</h3><p>Curated private city and countryside tours with knowledgeable local chauffeurs.</p><a href="#booking" class="sc-link">Explore Tours →</a></div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- ═══ PROCESS ═══ -->
+<section class="sec psec">
+  <div class="wrap">
+    <div class="sec-hd"><div class="pill">Simple Process</div><h2>Ready in 4 Easy Steps</h2></div>
+    <div class="prow">
+      <div class="pstep"><div class="pnum">1</div><h4>Choose Your Service</h4><p>Pick from airport, corporate, event or tour and select your vehicle.</p></div>
+      <div class="pstep"><div class="pnum">2</div><h4>Fill in Details</h4><p>Enter pickup, destination, date and time in under 60 seconds.</p></div>
+      <div class="pstep"><div class="pnum">3</div><h4>Instant Confirmation</h4><p>Receive booking confirmation and driver details by email within minutes.</p></div>
+      <div class="pstep"><div class="pnum">4</div><h4>Enjoy the Ride</h4><p>Your chauffeur arrives ahead of schedule. Relax in total comfort.</p></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ FLEET ═══ -->
+<section class="sec fsec" id="fleet">
+  <div class="wrap">
+    <div class="sec-hd"><div class="pill">Our Fleet</div><h2>A Vehicle for Every Occasion</h2><p>Meticulously maintained, professionally presented. Every vehicle less than 3 years old.</p></div>
+    <div class="fgrid">
+ 
+      <div class="fc">
+        <div style="position:relative;height:230px;overflow:hidden;background:#0a1610">
+          <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1400&q=85&auto=format&fit=crop" alt="Mercedes S-Class" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+          <div style="position:absolute;top:14px;right:14px;background:#3a8a50;color:#ede6d8;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:2px">Most Popular</div>
+        </div>
+        <div class="finfo">
+          <h3>Mercedes S-Class</h3><span class="fcls">Business Class</span>
+          <div class="fspecs">
+            <div class="sp"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1–3 pax</div>
+            <div class="sp"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>2 bags</div>
+            <div class="sp"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>Wi-Fi</div>
+          </div>
+          <div class="fprice"><span class="pfrom">From</span><span class="pn">$89</span><span class="pu">/ trip</span></div>
+          <a href="#booking" class="btn btn-p" style="width:100%;justify-content:center">Book This Vehicle</a>
+        </div>
+      </div>
+ 
+      <div class="fc">
+        <div style="position:relative;height:230px;overflow:hidden;background:#0a1610">
+          <img src="https://i.ibb.co.com/b5gPM13F/download.jpg" alt="BMW 7 Series" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+          <div style="position:absolute;top:14px;right:14px;background:#3a8a50;color:#ede6d8;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:2px">Executive</div>
+        </div>
+        <div class="finfo">
+          <h3>BMW 7 Series</h3><span class="fcls">First Class</span>
+          <div class="fspecs">
+            <div class="sp"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1–3 pax</div>
+            <div class="sp"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>3 bags</div>
+            <div class="sp"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>Wi-Fi</div>
+          </div>
+          <div class="fprice"><span class="pfrom">From</span><span class="pn">$110</span><span class="pu">/ trip</span></div>
+          <a href="#booking" class="btn btn-p" style="width:100%;justify-content:center">Book This Vehicle</a>
+        </div>
+      </div>
+ 
+      <div class="fc">
+        <div style="position:relative;height:230px;overflow:hidden;background:#0a1610">
+          <img src="https://i.ibb.co.com/JRpQpKQq/download-2.jpg" alt="Mercedes V-Class" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <div class="finfo">
+          <h3>Mercedes V-Class</h3><span class="fcls">Premium Van — Group Travel</span>
+          <div class="fspecs">
+            <div class="sp"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1–7 pax</div>
+            <div class="sp"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>7 bags</div>
+            <div class="sp"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>Wi-Fi</div>
+          </div>
+          <div class="fprice"><span class="pfrom">From</span><span class="pn">$145</span><span class="pu">/ trip</span></div>
+          <a href="#booking" class="btn btn-p" style="width:100%;justify-content:center">Book This Vehicle</a>
+        </div>
+      </div>
+ 
+    </div>
+    <div style="text-align:center;margin-top:36px"><a href="#booking" class="btn btn-g">View Full Fleet &amp; Custom Vehicles</a></div>
+  </div>
+</section>
+ 
+<!-- ═══ OFFERS ═══ -->
+<section class="sec osec" id="offers">
+  <div class="wrap">
+    <div class="sec-hd"><div class="pill">Exclusive Packages</div><h2>Curated Travel Packages</h2><p>Save on our most popular services with pre-packaged bundles.</p></div>
+    <div class="ogrid">
+      <div class="oc">
+        <div class="onum">01</div>
+        <div class="obadge">🔥 Best Value</div>
+        <h3>Airport Return Package</h3>
+        <p>Book your round-trip transfer and save 20%. Meet &amp; greet, luggage help, and flight monitoring both ways.</p>
+        <div class="oprow"><span class="owas">$178</span><span class="onow">$142</span><span class="osave">Save $36</span></div>
+        <ul class="oli"><li>Heathrow, Gatwick, Stansted, City</li><li>Meet &amp; greet with name board</li><li>45 min free waiting time</li><li>Flight monitoring included</li><li>Complimentary water &amp; Wi-Fi</li></ul>
+        <a href="#booking" class="btn btn-p">Book Package</a>
+      </div>
+      <div class="oc">
+        <div class="onum">02</div>
+        <div class="obadge">⭐ Premium</div>
+        <h3>Corporate Monthly Plan</h3>
+        <p>Fixed monthly rate with priority dispatch, dedicated driver, and corporate invoicing for frequent travelers.</p>
+        <div class="oprow"><span class="owas">$1,200</span><span class="onow">$899</span><span class="osave">Save 25%</span></div>
+        <ul class="oli"><li>Up to 20 journeys per month</li><li>Dedicated account manager</li><li>Priority booking &amp; dispatch</li><li>Monthly consolidated invoice</li><li>Premium vehicle guaranteed</li></ul>
+        <a href="#booking" class="btn btn-p">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ REVIEWS ═══ -->
+<section class="sec rvsec" id="reviews">
+  <div class="wrap">
+    <div class="rvtop">
+      <div>
+        <div class="pill">What Clients Say</div>
+        <div style="display:flex;align-items:baseline;gap:14px;margin-top:8px">
+          <div class="bigr">4.9</div>
+          <div><div class="rvs">★★★★★</div><div class="rvct">Based on 847 Google Reviews</div></div>
+        </div>
+      </div>
+      <div class="gbadge">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <span>Google Reviews</span>
+      </div>
+    </div>
+    <div class="rvgrid">
+      <div class="rvc"><div class="rvstars">★★★★★</div><p class="rvq">"Absolutely impeccable service. Driver waiting at arrivals with a name board, helped with all luggage, Mercedes was spotless. Will never use anyone else."</p><div class="rvwho"><div class="rvav">J</div><div><div class="rvname">James Thornton</div><div class="rvmeta">Corporate · London</div></div></div></div>
+      <div class="rvc"><div class="rvstars">★★★★★</div><p class="rvq">"Used EliteDrive for our wedding and exceeded every expectation. S-Class beautifully decorated, chauffeur incredibly kind and professional. Perfect day."</p><div class="rvwho"><div class="rvav">S</div><div><div class="rvname">Sophia &amp; Marcus</div><div class="rvmeta">Wedding · Surrey</div></div></div></div>
+      <div class="rvc"><div class="rvstars">★★★★★</div><p class="rvq">"Our company uses EliteDrive monthly. Consistently excellent — always on time, vehicles pristine, drivers discreet and professional."</p><div class="rvwho"><div class="rvav">R</div><div><div class="rvname">Richard Blake</div><div class="rvmeta">CFO · City of London</div></div></div></div>
+      <div class="rvc"><div class="rvstars">★★★★★</div><p class="rvq">"Flight delayed 2 hours and they tracked it automatically. Driver was waiting, no extra charge. That level of professionalism is rare."</p><div class="rvwho"><div class="rvav">A</div><div><div class="rvname">Amanda Chen</div><div class="rvmeta">Frequent Flyer · New York</div></div></div></div>
+      <div class="rvc"><div class="rvstars">★★★★★</div><p class="rvq">"Booked V-Class for 6 people. Plenty of room, driver on time at 4am. Comfortable, clean and great value. 10/10 would absolutely book again."</p><div class="rvwho"><div class="rvav">M</div><div><div class="rvname">Marco Pellegrini</div><div class="rvmeta">Group · Milan</div></div></div></div>
+      <div class="rvc"><div class="rvstars">★★★★★</div><p class="rvq">"Use EliteDrive every week for client meetings. Quality always consistent, booking takes 30 seconds. My clients are always impressed."</p><div class="rvwho"><div class="rvav">L</div><div><div class="rvname">Laura Pemberton</div><div class="rvmeta">Business Dev · Canary Wharf</div></div></div></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ WHY CHOOSE US ═══ -->
+<section class="sec wsec">
+  <div class="wrap">
+    <div class="win">
+      <div>
+        <div class="pill">Why EliteDrive</div>
+        <h2 style="color:var(--wh);margin-top:12px">The Standard<br>Others <em style="color:var(--ch);font-style:italic">Aspire</em> To</h2>
+        <p style="color:var(--mu);line-height:1.8;margin:22px 0 32px;font-size:.93rem">We don't just move people — we create moments of calm, confidence, and class in every journey.</p>
+        <a href="#booking" class="btn btn-p">Experience the Difference</a>
+      </div>
+      <div class="witems">
+        <div class="wrow"><div class="wico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="wtxt"><h4>Vetted &amp; Certified Chauffeurs</h4><p>Every driver undergoes rigorous background checks, advanced driving courses, and regular performance reviews.</p></div></div>
+        <div class="wrow"><div class="wico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="wtxt"><h4>Punctuality Guarantee</h4><p>We track your flight in real-time. If delayed, we adjust at no extra cost. Your time is always our priority.</p></div></div>
+        <div class="wrow"><div class="wico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div class="wtxt"><h4>White-Glove Personal Service</h4><p>From chilled water to preferred newspapers — every detail of your comfort is anticipated before you arrive.</p></div></div>
+        <div class="wrow"><div class="wico"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><div class="wtxt"><h4>Transparent Fixed Pricing</h4><p>No surge pricing, no hidden fees. A clear fixed quote before you confirm — guaranteed every time.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ MARQUEE ═══ -->
+<div class="mqb">
+  <div class="mqt">
+    <span class="mqi"><em>"Best chauffeur experience in London"</em> — James T.</span><span class="mqd">✦</span>
+    <span class="mqi"><em>"Flawless for our wedding day"</em> — Sophia &amp; Marcus</span><span class="mqd">✦</span>
+    <span class="mqi"><em>"Our entire exec team uses EliteDrive"</em> — Richard B.</span><span class="mqd">✦</span>
+    <span class="mqi"><em>"Driver waited 2 hours — no extra charge"</em> — Amanda C.</span><span class="mqd">✦</span>
+    <span class="mqi"><em>"Premium service, transparent price"</em> — Marco P.</span><span class="mqd">✦</span>
+    <span class="mqi"><em>"My clients are always impressed"</em> — Laura P.</span><span class="mqd">✦</span>
+    <span class="mqi"><em>"Best chauffeur experience in London"</em> — James T.</span><span class="mqd">✦</span>
+    <span class="mqi"><em>"Flawless for our wedding day"</em> — Sophia &amp; Marcus</span><span class="mqd">✦</span>
+    <span class="mqi"><em>"Our entire exec team uses EliteDrive"</em> — Richard B.</span><span class="mqd">✦</span>
+    <span class="mqi"><em>"Driver waited 2 hours — no extra charge"</em> — Amanda C.</span><span class="mqd">✦</span>
+  </div>
+</div>
+ 
+<!-- ═══ BLOG ═══ -->
+<section class="sec blsec">
+  <div class="wrap">
+    <div class="sec-hd"><div class="pill">Insights &amp; News</div><h2>Travel Smarter,<br>Travel Better</h2><p>Tips, guides, and updates from the EliteDrive team.</p></div>
+    <div class="blgrid">
+ 
+      <div class="blc">
+        <div style="position:relative;height:200px;overflow:hidden;background:#0a1610">
+          <img src="https://i.ibb.co.com/1GnCgGrx/Selecting-a-Vehicle-for-Your-Airport-Taxi-Transfer-1170x676.jpg" alt="Airport travel" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <div class="blinfo"><span class="blcat">Airport Travel</span><h3>How to Navigate Heathrow Like a Pro: 2025 Guide</h3><p>Terminal-by-terminal breakdown, fastest routes, and why a chauffeur makes all the difference.</p><a href="#" class="bllink">Read Article →</a></div>
+      </div>
+ 
+      <div class="blc">
+        <div style="position:relative;height:200px;overflow:hidden;background:#0a1610">
+          <img src="https://i.ibb.co.com/FLpVswD4/corporate-car-service.jpg" alt="Corporate travel" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <div class="blinfo"><span class="blcat">Corporate Travel</span><h3>Why Top Executives Choose Chauffeur Over Taxi Every Time</h3><p>Productivity, privacy, and impression — the business case for premium ground transport.</p><a href="#" class="bllink">Read Article →</a></div>
+      </div>
+ 
+      <div class="blc">
+        <div style="position:relative;height:200px;overflow:hidden;background:#0a1610">
+          <img src="https://i.ibb.co.com/tP1ZMcNz/images.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <div class="blinfo"><span class="blcat">Weddings</span><h3>Choosing Your Wedding Car: Complete Planning Guide 2025</h3><p>From S-Class to Rolls Royce — how to pick the perfect vehicle for your most important day.</p><a href="#" class="bllink">Read Article →</a></div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ LOCATIONS ═══ -->
+<section class="sec locsec" id="contact">
+  <div class="wrap">
+    <div class="sec-hd"><div class="pill">Coverage Areas</div><h2>We Serve Every Major Hub</h2><p>From London's airports to city centres — punctuality guaranteed across all areas.</p></div>
+    <div class="locgrid">
+      <a href="#booking" class="locc"><span class="loci">✈</span><h4>Heathrow Airport</h4><span>Terminals 1–5</span></a>
+      <a href="#booking" class="locc"><span class="loci">✈</span><h4>Gatwick Airport</h4><span>North &amp; South Terminals</span></a>
+      <a href="#booking" class="locc"><span class="loci">✈</span><h4>Stansted Airport</h4><span>Main Terminal</span></a>
+      <a href="#booking" class="locc"><span class="loci">✈</span><h4>City Airport</h4><span>London DLR</span></a>
+      <a href="#booking" class="locc"><span class="loci">🏙</span><h4>Central London</h4><span>All Zones — 24/7</span></a>
+      <a href="#booking" class="locc"><span class="loci">🚂</span><h4>St Pancras</h4><span>Eurostar Connections</span></a>
+      <a href="#booking" class="locc"><span class="loci">🏨</span><h4>Hotel Transfers</h4><span>All Major Hotels</span></a>
+      <a href="#booking" class="locc"><span class="loci">🗺</span><h4>Custom Routes</h4><span>UK Nationwide</span></a>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ CTA ═══ -->
+<section class="ctasec">
+  <img class="cta-bg" src="https://cdn.pixabay.com/photo/2016/11/18/12/51/automobile-1834275_1280.jpg" alt="Luxury car" loading="lazy">
+  <div class="cta-ov"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="cta-body">
+      <div class="pill">Ready to Travel?</div>
+      <h2 style="margin-top:8px">Your Chauffeur Awaits</h2>
+      <p>Book in under 60 seconds or speak directly with our dispatch team. Available around the clock, every day of the year.</p>
+      <div class="cta-btns">
+        <a href="#booking" class="btn btn-p" style="padding:17px 36px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Book Now — Instant Confirmation</a>
+        <a href="tel:+18001234567" class="btn btn-g" style="padding:17px 36px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.66-.66a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>Call +1 (800) 123-4567</a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ GOOGLE MAP ═══ -->
+<section class="mapsec">
+  <div class="maphead">
+    <div class="wrap">
+      <div class="sec-hd" style="margin-bottom:0"><div class="pill">Find Us</div><h2 style="margin-top:8px">Our Base of Operations</h2><p>Centrally located for rapid dispatch across London and all surrounding areas.</p></div>
+    </div>
+  </div>
+  <div class="mapwrap">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158858.18452657898!2d-0.24168120642577516!3d51.52864657201522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="EliteDrive — London"></iframe>
+    <div class="mcard">
+      <h4>EliteDrive HQ</h4>
+      <div class="mrow"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><p>Central London, UK</p></div>
+      <div class="mrow"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.66-.66a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg><a href="tel:+18001234567">+1 (800) 123-4567</a></div>
+      <div class="mrow"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Available 24/7 · 365 days</p></div>
+      <a href="#booking" class="btn btn-p" style="margin-top:14px;font-size:.72rem;padding:9px 16px">Book a Pickup</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="wrap">
+    <div class="ftgrid">
+      <div class="ftbrand">
+        <a href="#" class="logo">
+          <div class="logo-box" style="width:34px;height:34px"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--ch)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div><div class="logo-name" style="font-size:1.1rem">EliteDrive</div><div class="logo-sub">Chauffeur Services</div></div>
+        </a>
+        <p>Premium chauffeur services across London and the UK. Professional, punctual, and perfectly presented since 2008.</p>
+        <div class="socs">
+          <a class="soca" href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a class="soca" href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a class="soca" href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a class="soca" href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+        </div>
+      </div>
+      <div class="ftcol"><h5>Services</h5><a href="#services">Airport Transfers</a><a href="#services">Corporate Travel</a><a href="#services">Weddings &amp; Events</a><a href="#services">Hourly Hire</a><a href="#services">Long Distance</a><a href="#services">City Tours</a></div>
+      <div class="ftcol"><h5>Company</h5><a href="#">About Us</a><a href="#fleet">Our Fleet</a><a href="#reviews">Reviews</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Press</a></div>
+      <div class="ftcol">
+        <h5>Contact</h5>
+        <p>📞 <a href="tel:+18001234567" style="display:inline;color:var(--mu)">+1 (800) 123-4567</a></p>
+        <p>✉ <a href="/cdn-cgi/l/email-protection#98f1f6fef7d8fdf4f1ecfdfceaf1eefdb6fbf7f5" style="display:inline;color:var(--mu)"><span class="__cf_email__" data-cfemail="e78e898188a7828b8e938283958e9182c984888a">[email&#160;protected]</span></a></p>
+        <p style="margin-top:12px;margin-bottom:5px;color:var(--wh);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase">Hours</p>
+        <div class="fhours"><span>Mon – Sun</span><span>24 hrs</span></div>
+        <div class="fhours"><span>Holidays</span><span>24 hrs</span></div>
+        <p style="margin-top:12px;font-size:.78rem;color:var(--mu)">London · Heathrow · Gatwick · Stansted · UK Nationwide</p>
+      </div>
+    </div>
+    <div class="ftbot">
+      <p>© 2025 EliteDrive Chauffeur Services. All rights reserved.</p>
+      <div class="ftlinks"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Cookie Policy</a><a href="#">GDPR</a><a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+ 
+<!-- COOKIE -->
+<div class="ck" id="ck">
+  <p>We use cookies to improve your experience. See our <a href="#">Cookie Policy</a> and <a href="#">Privacy Policy</a>.</p>
+  <div class="ckbtns"><button class="ckno" onclick="dck()">Decline</button><button class="ckok" onclick="dck()">Accept All</button></div>
+</div>
+ 
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="mbox">
+    <div class="mok">✓</div>
+    <h3>Booking Confirmed!</h3>
+    <p>Your journey has been received. A confirmation email is on its way. Our team will be in touch within 15 minutes.</p>
+    <button onclick="closeModal()" class="btn btn-p" style="width:100%;justify-content:center">Close</button>
+  </div>
+</div>
+ 
+<!-- WHATSAPP -->
+<a href="https://wa.me/18001234567" target="_blank" class="wa" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+ 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Header scroll
+const hdr=document.getElementById('hdr');
+window.addEventListener('scroll',()=>{
+  hdr.classList.toggle('slim',scrollY>60);
+  hdr.classList.toggle('up',scrollY>37);
+});
+// Mobile menu
+document.getElementById('hmbg').onclick=()=>document.getElementById('mmenu').classList.add('on');
+document.getElementById('mmx').onclick=cm;
+function cm(){document.getElementById('mmenu').classList.remove('on')}
+// Cookie
+setTimeout(()=>{if(!localStorage.getItem('ck'))document.getElementById('ck').classList.add('show')},2500);
+function dck(){localStorage.setItem('ck','1');document.getElementById('ck').classList.remove('show')}
+// Booking
+function doBook(e){e.preventDefault();document.getElementById('modal').style.display='flex'}
+function closeModal(){document.getElementById('modal').style.display='none'}
+// Date min
+const t=new Date().toISOString().split('T')[0];
+document.querySelectorAll('input[type=date]').forEach(d=>d.min=t);
+ 
+// Load images into divs via JS after page loads — bypass CSP on background-image
+// Pixabay images are fetched as JS Image objects, then set as background
+function applyBg(selector,url){
+  const el=document.querySelector(selector);
+  if(!el)return;
+  const img=new Image();
+  img.onload=()=>{ el.style.backgroundImage="url('"+url+"')"; };
+  img.onerror=()=>{ el.style.background='linear-gradient(135deg,#142a1a,#0a1610)'; };
+  img.src=url;
+}
+const P='https://cdn.pixabay.com/photo/';
+// Services
+applyBg('.sc:nth-child(1)',P+'2017/03/27/14/56/auto-2179220_1280.jpg');
+applyBg('.sc:nth-child(2)',P+'2017/06/15/09/05/bmw-2404809_1280.jpg');
+applyBg('.sc:nth-child(3)',P+'2017/07/19/13/09/wedding-car-2519948_1280.jpg');
+applyBg('.sc:nth-child(4)',P+'2018/02/21/01/17/bmw-3169436_1280.jpg');
+applyBg('.sc:nth-child(5)',P+'2016/10/26/12/48/mercedes-benz-1771413_1280.jpg');
+applyBg('.sc:nth-child(6)',P+'2016/11/18/12/51/automobile-1834275_1280.jpg');
+// Fleet
+applyBg('.fphoto:nth-of-type(1)',P+'2017/03/27/14/56/auto-2179220_1280.jpg');
+applyBg('.fc:nth-child(1) .fphoto',P+'2017/03/27/14/56/auto-2179220_1280.jpg');
+applyBg('.fc:nth-child(2) .fphoto',P+'2017/06/15/09/05/bmw-2404809_1280.jpg');
+applyBg('.fc:nth-child(3) .fphoto',P+'2016/10/26/12/48/mercedes-benz-1771413_1280.jpg');
+// Blog
+applyBg('.blc:nth-child(1) .blphoto
